@@ -1,17 +1,13 @@
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.Timer;
+import javax.swing.WindowConstants;
 
-@SuppressWarnings("serial")
 public class Game extends JPanel implements KeyListener {
 
 	
@@ -39,7 +35,7 @@ public class Game extends JPanel implements KeyListener {
 		frame.setSize(500, 525);
 		frame.setTitle("Snake");
 		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		frame.add(this);
 		frame.addKeyListener(this);
@@ -74,7 +70,7 @@ public class Game extends JPanel implements KeyListener {
 		firstApple = true;
 	}
 	
-	// Méthodes
+	// Mï¿½thodes
 	
 	private void getApple(Graphics g, int rx, int ry) {
 		
@@ -89,17 +85,20 @@ public class Game extends JPanel implements KeyListener {
 		
 		
 	if(end-start <= 30000 ) {	
+
 			
+			g.setColor(Color.WHITE);
 			g.fillRect(0, 0, 500, 500);
+			
 			
 			s.setText("Score : " + score);
 			time.setText("Time left : " + (30-(end-start)/1000) + " s");
 			
-			g.setColor(Color.WHITE);
+			g.setColor(Color.BLUE);
 			g.fillRect(dx, dy, 15, 15);
 			
 			
-			try { Thread.sleep(1); } catch(Exception e) {}
+			try { Thread.sleep(3); } catch(Exception e) {}
 			
 			
 		    if (key == KeyEvent.VK_LEFT) {
@@ -117,8 +116,8 @@ public class Game extends JPanel implements KeyListener {
 		    if (key == KeyEvent.VK_DOWN) {
 		        dy++;
 		    }
-		    /*
-		    // pour déblocker les barres.
+		    
+		    // pour dï¿½blocker les barres.
 		    if(dx >460) {
 		    	dx = dx - 460;
 		    }
@@ -131,22 +130,22 @@ public class Game extends JPanel implements KeyListener {
 		    if(dy <35) {
 		    	dy = dy + (460-35);
 		    }
-		    */
 		    
+		    /*
 		     // pour blocker les barres.
-		    if(dx >460) {
+		    if(dx > 460) {
 		    	dx = 460;
 		    }
-		    if(dy >460) {
+		    if(dy > 460) {
 		    	dy = 460;
 		    }
-		    if(dx <10) {
+		    if(dx < 10) {
 		    	dx = 10;
 		    }
-		    if(dy <35) {
+		    if(dy < 35) {
 		    	dy = 35;
 		    }
-		     
+		    */
 		     
 		    
 		    getApple(g, this.rx, this.ry);
@@ -171,7 +170,7 @@ public class Game extends JPanel implements KeyListener {
 
 		}else {
 			
-			
+			this.setBackground(Color.gray);
 			this.add(fin);
 			finScore.setText("Your Score is : " + score);
 			this.add(finScore);
